@@ -1,4 +1,4 @@
-# docker-ruby
+# docker-rust
 
 This repository contains the Dockerfile for a Rust image: [jimmycuadra/rust](https://registry.hub.docker.com/u/jimmycuadra/rust/). The image includes `rustc`, `rustdoc`, `cargo`, Git, SSL certificates, and build essentials, so it should be able to run `cargo build` on most projects out of the box. The path `/source` is a volume where you can mount a Cargo project from the host machine.
 
