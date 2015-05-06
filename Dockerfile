@@ -1,4 +1,4 @@
-FROM debian:wheezy
+FROM debian:jessie
 MAINTAINER Jimmy Cuadra <jimmy@jimmycuadra.com>
 
 ENV RUST_VERSION=1.0.0-beta.3
