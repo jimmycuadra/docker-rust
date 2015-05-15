@@ -1,7 +1,7 @@
 FROM debian:jessie
 MAINTAINER Jimmy Cuadra <jimmy@jimmycuadra.com>
 
-ENV RUST_VERSION=1.0.0-beta.4
+ENV RUST_VERSION=1.0.0
 
 RUN apt-get update && \
   DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
