@@ -1,7 +1,7 @@
 FROM debian:jessie
 MAINTAINER Jimmy Cuadra <jimmy@jimmycuadra.com>
 
-ENV RUST_VERSION=1.0.0
+ENV RUST_VERSION=1.1.0
 
 RUN apt-get update && \
   DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
@@ -11,12 +11,13 @@ RUN apt-get update && \
     git \
     libssl-dev && \
   curl -sO https://static.rust-lang.org/dist/rust-$RUST_VERSION-x86_64-unknown-linux-gnu.tar.gz && \
-  tar -xvzf rust-$RUST_VERSION-x86_64-unknown-linux-gnu.tar.gz && \
-  ./rust-$RUST_VERSION-x86_64-unknown-linux-gnu/install.sh && \
-  apt-get remove --purge -y curl && \
-  apt-get autoclean && \
-  apt-get clean && \
-  rm -rf rust-$RUST_VERSION-x86_64-unknown-linux-gnu{,.tar.gz} \
+  tar -xzf rust-$RUST_VERSION-x86_64-unknown-linux-gnu.tar.gz && \
+  ./rust-$RUST_VERSION-x86_64-unknown-linux-gnu/install.sh --without=rust-docs && \
+  DEBIAN_FRONTEND=noninteractive apt-get remove --purge -y curl && \
+  DEBIAN_FRONTEND=noninteractive apt-get autoremove -y && \
+  rm -rf \
+    rust-$RUST_VERSION-x86_64-unknown-linux-gnu \
+    rust-$RUST_VERSION-x86_64-unknown-linux-gnu.tar.gz \
     /var/lib/apt/lists/* \
     /tmp/* \
     /var/tmp/* && \
