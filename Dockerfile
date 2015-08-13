@@ -2,6 +2,7 @@ FROM debian:jessie
 MAINTAINER Jimmy Cuadra <jimmy@jimmycuadra.com>
 
 ENV RUST_VERSION=1.1.0
+ENV USER root
 
 RUN apt-get update && \
   DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
