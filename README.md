@@ -29,6 +29,18 @@ docker run -it --rm -v $(pwd):/source grummfy/rust
 
 ### work 
 
+#### cargo command
+
+``` bash
+docker run --rm -v $PWD:/source grummfy/rust cargo run
+```
+
+#### rustc
+
+``` bash
+docker run --rm -v $PWD:/source grummfy/rust rustc src/main.rs
+```
+
 ## License
 
 [MIT](http://opensource.org/licenses/MIT)
