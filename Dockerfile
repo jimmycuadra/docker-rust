@@ -3,7 +3,8 @@ MAINTAINER Grummfy <me@grummfy.be>
 # forked from https://github.com/jimmycuadra/docker-rust
 
 ENV USER root
-ENV RUST_VERSION=stable
+ARG RUST_VERSION=stable
+ENV RUST_VERSION ${RUST_VERSION}
 
 # uppdate the system and get curl, build-essential, git, etc
 RUN apt-get update && \

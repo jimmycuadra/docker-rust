@@ -24,7 +24,7 @@ directory on the host shared. From there you can run `rustc`, `rustdoc`,
 and `cargo` as you please.
 
 ``` bash
-docker run -it --rm -v $(pwd):/source grummfy/rust
+docker run -it --rm -v $(pwd):/source grummfy/docker-rust
 ```
 
 ### work 
@@ -32,13 +32,21 @@ docker run -it --rm -v $(pwd):/source grummfy/rust
 #### cargo command
 
 ``` bash
-docker run --rm -v $PWD:/source grummfy/rust cargo run
+docker run --rm -v $PWD:/source grummfy/docker-rust cargo run
 ```
 
 #### rustc
 
 ``` bash
-docker run --rm -v $PWD:/source grummfy/rust rustc src/main.rs
+docker run --rm -v $PWD:/source grummfy/docker-rust rustc src/main.rs
+```
+
+## Build it
+
+``` bash
+docker build --build-arg RUST_VERSION=beta -t grummfy/docker-rust:beta-latest .
+docker build --build-arg RUST_VERSION=stable -t grummfy/docker-rust:stable-latest .
+docker build --build-arg RUST_VERSION=1.10.0 -t grummfy/docker-rust:1.10.0 .
 ```
 
 ## License
