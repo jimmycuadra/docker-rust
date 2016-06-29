@@ -1,28 +1,38 @@
 FROM debian:jessie
-MAINTAINER Jimmy Cuadra <jimmy@jimmycuadra.com>
+MAINTAINER Grummfy <me@grummfy.be>
+# forked from https://github.com/jimmycuadra/docker-rust
 
 ENV USER root
-ENV RUST_VERSION=1.9.0
+ARG RUST_VERSION=stable
+ENV RUST_VERSION ${RUST_VERSION}
 
+# uppdate the system and get curl, build-essential, git, etc
 RUN apt-get update && \
-  DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-    build-essential \
-    ca-certificates \
-    curl \
-    git \
-    libssl-dev && \
-  curl -sO https://static.rust-lang.org/dist/rust-$RUST_VERSION-x86_64-unknown-linux-gnu.tar.gz && \
-  tar -xzf rust-$RUST_VERSION-x86_64-unknown-linux-gnu.tar.gz && \
-  ./rust-$RUST_VERSION-x86_64-unknown-linux-gnu/install.sh --without=rust-docs && \
-  DEBIAN_FRONTEND=noninteractive apt-get remove --purge -y curl && \
-  DEBIAN_FRONTEND=noninteractive apt-get autoremove -y && \
-  rm -rf \
-    rust-$RUST_VERSION-x86_64-unknown-linux-gnu \
-    rust-$RUST_VERSION-x86_64-unknown-linux-gnu.tar.gz \
-    /var/lib/apt/lists/* \
-    /tmp/* \
-    /var/tmp/* && \
-  mkdir /source
+	apt-get upgrade && \
+	DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+		build-essential \
+		ca-certificates \
+		curl \
+		git \
+		libssl-dev \
+		sudo \
+		file
+
+COPY install_rust.sh /root/install_rust.sh
+
+RUN sh /root/install_rust.sh $RUST_VERSION
+
+# cleanup
+RUN	DEBIAN_FRONTEND=noninteractive apt-get remove --purge -y curl && \
+	DEBIAN_FRONTEND=noninteractive apt-get autoremove -y && \
+	rm -rf \
+		/var/lib/apt/lists/* \
+		/tmp/* \
+		/var/tmp/* && \
+	mkdir /source
+
 VOLUME ["/source"]
+
 WORKDIR /source
+
 CMD ["/bin/bash"]
