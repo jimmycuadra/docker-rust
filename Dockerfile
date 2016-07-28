@@ -2,7 +2,7 @@ FROM debian:jessie
 MAINTAINER Jimmy Cuadra <jimmy@jimmycuadra.com>
 
 ENV USER root
-ENV RUST_VERSION=1.9.0
+ENV RUST_VERSION=1.10.0
 
 RUN apt-get update && \
   DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
