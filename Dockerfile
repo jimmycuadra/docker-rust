@@ -6,10 +6,8 @@ ENV RUST_VERSION=1.12.0
 
 RUN apt-get update && \
   DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-    build-essential \
     ca-certificates \
     curl \
-    git \
     libssl-dev && \
   curl -sO https://static.rust-lang.org/dist/rust-$RUST_VERSION-x86_64-unknown-linux-gnu.tar.gz && \
   tar -xzf rust-$RUST_VERSION-x86_64-unknown-linux-gnu.tar.gz && \
