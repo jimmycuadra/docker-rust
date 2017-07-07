@@ -10,6 +10,7 @@ RUN apt-get update && \
     ca-certificates \
     curl \
     git \
+    openssh-client \
     libssl-dev \
     pkg-config && \
   curl -sO https://static.rust-lang.org/dist/rust-$RUST_VERSION-x86_64-unknown-linux-gnu.tar.gz && \
