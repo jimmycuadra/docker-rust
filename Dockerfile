@@ -1,5 +1,4 @@
-FROM debian:jessie
-MAINTAINER Jimmy Cuadra <jimmy@jimmycuadra.com>
+FROM debian
 
 ENV USER root
 ENV RUST_VERSION=1.18.0
@@ -25,6 +24,5 @@ RUN apt-get update && \
     /tmp/* \
     /var/tmp/* && \
   mkdir /source
-VOLUME ["/source"]
 WORKDIR /source
 CMD ["/bin/bash"]
