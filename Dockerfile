@@ -12,17 +12,18 @@ RUN apt-get update && \
     openssh-client \
     libssl-dev \
     pkg-config && \
-  curl -sO https://static.rust-lang.org/dist/rust-$RUST_VERSION-x86_64-unknown-linux-gnu.tar.gz && \
-  tar -xzf rust-$RUST_VERSION-x86_64-unknown-linux-gnu.tar.gz && \
-  ./rust-$RUST_VERSION-x86_64-unknown-linux-gnu/install.sh --without=rust-docs && \
+  curl -sO https://static.rust-lang.org/rustup/dist/x86_64-unknown-linux-gnu/rustup-init && \
+  chmod +x rustup-init && \
+  ./rustup-init -y --default-toolchain $RUST_VERSION --no-modify-path && \
   DEBIAN_FRONTEND=noninteractive apt-get remove --purge -y curl && \
   DEBIAN_FRONTEND=noninteractive apt-get autoremove -y && \
   rm -rf \
-    rust-$RUST_VERSION-x86_64-unknown-linux-gnu \
-    rust-$RUST_VERSION-x86_64-unknown-linux-gnu.tar.gz \
+    rustup-init \
     /var/lib/apt/lists/* \
     /tmp/* \
     /var/tmp/* && \
   mkdir /source
+
+ENV PATH $PATH:/root/.cargo/bin
 WORKDIR /source
 CMD ["/bin/bash"]
