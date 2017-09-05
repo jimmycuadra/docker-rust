@@ -1,3 +1,10 @@
+**DEPRECATION NOTICE**
+
+There is now an official Docker image for Rust, so this one is no longer maintained.
+
+* [Rust image on Docker Hub](https://hub.docker.com/_/rust/)
+* [Rust image source on GitHub](https://github.com/rust-lang-nursery/docker-rust)
+
 # docker-rust
 
 Public trusted images available on:
